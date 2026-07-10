@@ -266,12 +266,26 @@
       transition: transform var(--transition), box-shadow var(--transition);
     }
     .galerie-item:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 rgba(255,255,255,0.25); }
-    .galerie-item .runner-icon { width: 34%; height: 34%; opacity: 0.5; }
+    .galerie-item img.ph {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(1);
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+    .galerie-item:hover img.ph { filter: none; transform: scale(1.04); }
     .galerie-item span.label {
-      position: absolute; bottom: 0.8rem; left: 0.9rem;
+      position: absolute; bottom: 0.8rem; left: 0.9rem; z-index: 1;
       font-family: 'Luckiest Guy', cursive;
       font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      background: rgba(0,0,0,0.65);
+      padding: 0.3rem 0.7rem 0.15rem;
     }
+    .galerie-cta {
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 1.05rem; text-align: center;
+      padding: 1.2rem; line-height: 1.4;
+    }
+    .galerie-item:hover .galerie-cta { text-decoration: underline; }
     .galerie-note { text-align: center; margin-top: 2rem; color: var(--gris); font-weight: 300; }
     .galerie-note a { color: var(--blanc); border-bottom: 2px solid var(--blanc); font-weight: 600; }
 
@@ -524,14 +538,14 @@
         <h2>La vie du club</h2>
       </div>
       <div class="galerie-grid">
-        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Sortie longue</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Ben Aknoun</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Courses</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">La famille</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Trail</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Casbah</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Iron Run</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Convivialité</span></div>
+        <div class="galerie-item reveal"><img class="ph" src="photos/photo02.jpg" alt="Photo de groupe du club" loading="lazy"><span class="label">La famille</span></div>
+        <div class="galerie-item reveal"><img class="ph" src="photos/photo03.jpg" alt="Sortie au parc de Ben Aknoun" loading="lazy"><span class="label">Ben Aknoun</span></div>
+        <div class="galerie-item reveal"><img class="ph" src="photos/photo09.jpg" alt="Urban Trail d'Alger de nuit" loading="lazy"><span class="label">Urban Trail</span></div>
+        <div class="galerie-item reveal"><img class="ph" src="photos/photo10.jpg" alt="Course sur le front de mer d'Alger" loading="lazy"><span class="label">Alger Run</span></div>
+        <div class="galerie-item reveal"><img class="ph" src="photos/photo12.jpg" alt="Finisher avec sa médaille" loading="lazy"><span class="label">Finisher</span></div>
+        <div class="galerie-item reveal"><img class="ph" src="photos/photo11.jpg" alt="Esprit d'équipe, mains réunies" loading="lazy"><span class="label">Esprit d'équipe</span></div>
+        <div class="galerie-item reveal"><img class="ph" src="photos/photo07.jpg" alt="Moment convivial après la course" loading="lazy"><span class="label">Convivialité</span></div>
+        <a class="galerie-item reveal" href="https://www.instagram.com/les_ambassadeurs_club/" target="_blank" rel="noopener"><span class="galerie-cta">Voir plus sur<br>@les_ambassadeurs_club →</span></a>
       </div>
       <p class="galerie-note reveal">
         Retrouvez toutes nos photos et vidéos sur
