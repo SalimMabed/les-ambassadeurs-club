@@ -337,6 +337,11 @@
     .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
+    /* ---------- Écrans tactiles : les photos se colorent au défilement ---------- */
+    @media (hover: none) {
+      .galerie-item.color img.ph, .apropos-visual.color img.ph { filter: none; }
+    }
+
     /* ---------- Responsive ---------- */
     @media (max-width: 900px) {
       .apropos-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -628,6 +633,14 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Sur écran tactile : les photos reprennent leurs couleurs quand elles entrent à l'écran
+    if (window.matchMedia('(hover: none)').matches) {
+      const colorObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => e.target.classList.toggle('color', e.isIntersecting));
+      }, { threshold: 0.55 });
+      document.querySelectorAll('.galerie-item, .apropos-visual').forEach(el => colorObserver.observe(el));
+    }
   </script>
 </body>
 </html>
