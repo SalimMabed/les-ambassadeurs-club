@@ -184,10 +184,19 @@
         repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 18px),
         var(--noir);
     }
-    .apropos-visual .runner-icon { width: 45%; height: 45%; }
+    .apropos-visual { overflow: hidden; }
+    .apropos-visual img.ph {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 78%;
+      filter: grayscale(1);
+      transition: filter 0.4s ease, transform 0.4s ease;
+    }
+    .apropos-visual:hover img.ph { filter: none; transform: scale(1.03); }
     .apropos-visual .tag {
-      position: absolute; bottom: 1.1rem; right: 1.1rem;
+      position: absolute; bottom: 1.1rem; right: 1.1rem; z-index: 1;
       font-family: 'Luckiest Guy', cursive; font-size: 0.85rem; letter-spacing: 0.2em;
+      background: rgba(0,0,0,0.65);
+      padding: 0.35rem 0.8rem 0.2rem;
     }
     .apropos-text h3 { font-size: 1.35rem; margin: 1.8rem 0 0.5rem; }
     .apropos-text h3:first-child { margin-top: 0; }
@@ -422,7 +431,7 @@
       </div>
       <div class="apropos-grid">
         <div class="apropos-visual reveal">
-          <span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span>
+          <img class="ph" src="photos/photo02.jpg" alt="La communauté Les Ambassadeurs Club au grand complet" loading="lazy">
           <span class="tag">Alger · DZ</span>
         </div>
         <div class="apropos-text reveal">
