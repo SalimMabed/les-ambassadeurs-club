@@ -37,11 +37,9 @@
     img { max-width: 100%; display: block; }
     .container { width: min(1140px, 92%); margin: 0 auto; }
 
-    /* ---------- Icône coureur (silhouette blanche) ---------- */
+    /* ---------- Icône coureur (image du logo) ---------- */
     .runner-icon { display: inline-block; }
-    .runner-icon svg { display: block; width: 100%; height: 100%; }
-    .runner-icon path, .runner-icon circle { stroke: currentColor; fill: none; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
-    .runner-icon circle.head { fill: currentColor; stroke: none; }
+    .runner-icon img { display: block; width: 100%; height: 100%; object-fit: contain; }
 
     /* ---------- Header ---------- */
     header {
@@ -347,24 +345,10 @@
 </head>
 <body>
 
-  <!-- Silhouette de sprinteur réutilisable -->
-  <svg width="0" height="0" style="position:absolute">
-    <defs>
-      <g id="sprinter" stroke="currentColor" fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="66" cy="15" r="9" fill="currentColor" stroke="none"/>
-        <path d="M61 26 L47 52"/>
-        <path d="M58 32 L76 24 L88 30"/>
-        <path d="M55 38 L40 44 L30 36"/>
-        <path d="M47 52 L60 62 L58 82"/>
-        <path d="M47 52 L30 66 L12 62"/>
-      </g>
-    </defs>
-  </svg>
-
   <header>
     <div class="container nav">
       <a href="#" class="logo">
-        <span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span>
+        <span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span>
         <span>Les Ambassadeurs Club</span>
       </a>
       <nav>
@@ -384,7 +368,7 @@
   <!-- ============ HERO ============ -->
   <section class="hero">
     <div class="container hero-inner">
-      <span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span>
+      <span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span>
       <h1><span>Les</span><span>Ambassadeurs</span><span>Club</span></h1>
       <div class="hero-eyebrow">Communauté running · Alger</div>
       <p class="lead">
@@ -424,7 +408,7 @@
       </div>
       <div class="apropos-grid">
         <div class="apropos-visual reveal">
-          <span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span>
+          <span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span>
           <span class="tag">Alger · DZ</span>
         </div>
         <div class="apropos-text reveal">
@@ -540,14 +524,14 @@
         <h2>La vie du club</h2>
       </div>
       <div class="galerie-grid">
-        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Sortie longue</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Ben Aknoun</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Courses</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">La famille</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Trail</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Casbah</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Iron Run</span></div>
-        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Convivialité</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Sortie longue</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Ben Aknoun</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Courses</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">La famille</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Trail</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Casbah</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Iron Run</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span><span class="label">Convivialité</span></div>
       </div>
       <p class="galerie-note reveal">
         Retrouvez toutes nos photos et vidéos sur
@@ -594,7 +578,7 @@
   <footer>
     <div class="container footer-grid">
       <div class="logo">
-        <span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span>
+        <span class="runner-icon"><img src="runner.png" alt="Sprinteur Les Ambassadeurs Club"></span>
         <span>Les Ambassadeurs Club</span>
       </div>
       <div class="socials">
