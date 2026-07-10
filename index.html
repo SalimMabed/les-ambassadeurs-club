@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Ambassadeurs Club — Communauté Running à Alger</title>
+  <meta name="description" content="Les Ambassadeurs Club : communauté running à Alger. Sorties longues, séances fondamentales, trails et bonne ambiance. Séances ouvertes à tous les niveaux.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --noir: #050505;
+      --noir-2: #0d0d0d;
+      --blanc: #ffffff;
+      --gris: #9a9a9a;
+      --bordure: 2px solid var(--blanc);
+      --transition: 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--noir);
+      color: var(--blanc);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, .display {
+      font-family: 'Luckiest Guy', cursive;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 1.05;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1140px, 92%); margin: 0 auto; }
+
+    /* ---------- Icône coureur (silhouette blanche) ---------- */
+    .runner-icon { display: inline-block; }
+    .runner-icon svg { display: block; width: 100%; height: 100%; }
+    .runner-icon path, .runner-icon circle { stroke: currentColor; fill: none; stroke-width: 9; stroke-linecap: round; stroke-linejoin: round; }
+    .runner-icon circle.head { fill: currentColor; stroke: none; }
+
+    /* ---------- Header ---------- */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(5,5,5,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: var(--bordure);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0.8rem 0;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 0.7rem;
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 1rem; letter-spacing: 0.06em; text-transform: uppercase;
+      line-height: 1;
+      padding-top: 0.2em; /* Luckiest Guy sits high */
+    }
+    .logo .runner-icon { width: 34px; height: 34px; }
+    nav ul { display: flex; gap: 2rem; list-style: none; }
+    nav ul a {
+      font-size: 0.82rem; letter-spacing: 0.16em; text-transform: uppercase;
+      font-weight: 600;
+      color: var(--gris); transition: color var(--transition);
+    }
+    nav ul a:hover { color: var(--blanc); }
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.9rem;
+      border: var(--bordure);
+      color: var(--blanc);
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase;
+      line-height: 1;
+      padding-top: 1rem; /* compense la ligne de base de Luckiest Guy */
+      transition: all var(--transition);
+      background: transparent;
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--blanc); color: var(--noir); box-shadow: 5px 5px 0 rgba(255,255,255,0.35); }
+    .btn-solid { background: var(--blanc); color: var(--noir); }
+    .btn-solid:hover { background: var(--noir); color: var(--blanc); box-shadow: 5px 5px 0 rgba(255,255,255,0.35); }
+    .burger { display: none; background: none; border: none; color: var(--blanc); font-size: 1.6rem; cursor: pointer; }
+
+    /* ---------- Hero (reprend la composition du logo) ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      position: relative;
+      background: var(--noir);
+    }
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 140px);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; padding: 8rem 0 5rem; }
+    .hero .runner-icon {
+      width: clamp(90px, 14vw, 150px); height: clamp(90px, 14vw, 150px);
+      margin: 0 auto 1.5rem;
+      animation: bounce-in 0.9s cubic-bezier(.2,1.4,.4,1) both;
+    }
+    @keyframes bounce-in {
+      from { opacity: 0; transform: translateY(-30px) scale(0.8); }
+      to { opacity: 1; transform: none; }
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 9vw, 6.2rem);
+      margin-bottom: 1.6rem;
+    }
+    .hero h1 span { display: block; }
+    .hero p.lead {
+      max-width: 580px; margin: 0 auto 2.6rem;
+      color: var(--gris); font-size: 1.15rem; font-weight: 300;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.9rem;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      font-size: 0.8rem; font-weight: 700; margin-bottom: 2rem;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 44px; height: 2px; background: var(--blanc); }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .hero-stats {
+      display: flex; gap: 0; margin-top: 4.5rem; flex-wrap: wrap; justify-content: center;
+      border: var(--bordure);
+    }
+    .stat {
+      padding: 1.3rem 2.4rem;
+      border-right: var(--bordure);
+      flex: 1 1 auto;
+    }
+    .stat:last-child { border-right: none; }
+    .stat b {
+      display: block; font-family: 'Luckiest Guy', cursive; font-weight: 400;
+      font-size: 2rem; line-height: 1;
+    }
+    .stat span { color: var(--gris); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; }
+
+    /* ---------- Bandeau défilant ---------- */
+    .marquee {
+      border-top: var(--bordure); border-bottom: var(--bordure);
+      overflow: hidden; white-space: nowrap;
+      padding: 0.9rem 0;
+      background: var(--blanc); color: var(--noir);
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: defile 22s linear infinite;
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 1.15rem; letter-spacing: 0.1em; text-transform: uppercase;
+      line-height: 1; padding-top: 0.2em;
+    }
+    .marquee-track span { margin: 0 1.6rem; }
+    @keyframes defile { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ---------- Sections communes ---------- */
+    section { padding: 6.5rem 0; }
+    .section-head { margin-bottom: 3.5rem; }
+    .section-head .kicker {
+      display: inline-block;
+      background: var(--blanc); color: var(--noir);
+      letter-spacing: 0.24em; text-transform: uppercase;
+      font-size: 0.75rem; font-weight: 700;
+      padding: 0.35rem 0.9rem;
+      margin-bottom: 1.1rem;
+    }
+    .section-head h2 { font-size: clamp(2rem, 4.5vw, 3.4rem); }
+    .section-head p { color: var(--gris); max-width: 620px; margin-top: 1rem; font-weight: 300; }
+
+    /* ---------- À propos ---------- */
+    .apropos { background: var(--noir-2); border-top: var(--bordure); }
+    .apropos-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: center; }
+    .apropos-visual {
+      aspect-ratio: 1; position: relative;
+      border: var(--bordure);
+      display: grid; place-items: center;
+      background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 18px),
+        var(--noir);
+    }
+    .apropos-visual .runner-icon { width: 45%; height: 45%; }
+    .apropos-visual .tag {
+      position: absolute; bottom: 1.1rem; right: 1.1rem;
+      font-family: 'Luckiest Guy', cursive; font-size: 0.85rem; letter-spacing: 0.2em;
+    }
+    .apropos-text h3 { font-size: 1.35rem; margin: 1.8rem 0 0.5rem; }
+    .apropos-text h3:first-child { margin-top: 0; }
+    .apropos-text p { color: var(--gris); font-weight: 300; }
+
+    /* ---------- Entraînements ---------- */
+    .seances-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem; }
+    .seance {
+      border: var(--bordure);
+      background: var(--noir-2);
+      padding: 2.4rem;
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .seance:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 rgba(255,255,255,0.25); }
+    .seance .jour {
+      display: inline-block;
+      background: var(--blanc); color: var(--noir);
+      font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700;
+      padding: 0.3rem 0.8rem;
+      margin-bottom: 1.1rem;
+    }
+    .seance h3 { font-size: 1.7rem; margin-bottom: 1.3rem; }
+    .seance ul { list-style: none; }
+    .seance li {
+      display: flex; gap: 1rem; align-items: baseline;
+      padding: 0.55rem 0; color: var(--gris); font-weight: 300;
+      border-bottom: 1px dashed rgba(255,255,255,0.2);
+    }
+    .seance li:last-child { border-bottom: none; }
+    .seance li .lbl {
+      font-family: 'Luckiest Guy', cursive;
+      color: var(--blanc); font-size: 0.8rem; letter-spacing: 0.06em;
+      min-width: 5.6rem; flex-shrink: 0;
+    }
+    .note-rules {
+      margin-top: 2.2rem; padding: 1.5rem 1.8rem;
+      border: var(--bordure);
+      border-left-width: 10px;
+      background: var(--noir-2);
+      color: var(--gris); font-weight: 300;
+    }
+    .note-rules b { color: var(--blanc); font-weight: 600; }
+
+    /* ---------- Événements ---------- */
+    .events { background: var(--noir-2); border-top: var(--bordure); }
+    .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+    .event {
+      padding: 2rem 1.8rem;
+      border: var(--bordure);
+      background: var(--noir);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .event:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 rgba(255,255,255,0.25); }
+    .event .num {
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 2rem; display: block; margin-bottom: 0.8rem;
+      -webkit-text-stroke: 1px var(--blanc);
+      color: transparent;
+    }
+    .event h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .event p { color: var(--gris); font-size: 0.95rem; font-weight: 300; }
+
+    /* ---------- Galerie ---------- */
+    .galerie-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem;
+    }
+    .galerie-item {
+      aspect-ratio: 1;
+      border: var(--bordure);
+      background:
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 16px),
+        var(--noir-2);
+      display: grid; place-items: center;
+      position: relative; overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .galerie-item:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 rgba(255,255,255,0.25); }
+    .galerie-item .runner-icon { width: 34%; height: 34%; opacity: 0.5; }
+    .galerie-item span.label {
+      position: absolute; bottom: 0.8rem; left: 0.9rem;
+      font-family: 'Luckiest Guy', cursive;
+      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .galerie-note { text-align: center; margin-top: 2rem; color: var(--gris); font-weight: 300; }
+    .galerie-note a { color: var(--blanc); border-bottom: 2px solid var(--blanc); font-weight: 600; }
+
+    /* ---------- Rejoindre ---------- */
+    .rejoindre {
+      background: var(--noir-2);
+      border-top: var(--bordure);
+      text-align: center;
+    }
+    .rejoindre h2 { font-size: clamp(2.2rem, 5.5vw, 3.8rem); margin-bottom: 1.2rem; }
+    .rejoindre > .container > .reveal > p { color: var(--gris); max-width: 560px; margin: 0 auto 2.4rem; font-weight: 300; }
+    .steps {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem;
+      margin: 3rem auto; max-width: 940px; text-align: left;
+    }
+    .step { border: var(--bordure); padding: 1.6rem 1.5rem; background: var(--noir); }
+    .step .num { font-family: 'Luckiest Guy', cursive; font-size: 1.8rem; -webkit-text-stroke: 1px var(--blanc); color: transparent; }
+    .step h3 { font-size: 1.05rem; margin: 0.5rem 0 0.4rem; }
+    .step p { font-size: 0.92rem; margin: 0; color: var(--gris); font-weight: 300; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: var(--bordure);
+      padding: 3rem 0 2rem;
+    }
+    .footer-grid {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    footer .fine { color: var(--gris); font-size: 0.85rem; font-weight: 300; }
+    .socials { display: flex; gap: 1rem; }
+    .socials a {
+      width: 44px; height: 44px; border: var(--bordure);
+      display: grid; place-items: center; transition: all var(--transition);
+    }
+    .socials a:hover { background: var(--blanc); color: var(--noir); }
+    .socials svg { width: 18px; height: 18px; fill: currentColor; }
+
+    /* ---------- Reveal animation ---------- */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .apropos-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .seances-grid { grid-template-columns: 1fr; }
+      .events-grid { grid-template-columns: repeat(2, 1fr); }
+      .galerie-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: 1fr; }
+      .stat { padding: 1.1rem 1.4rem; }
+      nav ul {
+        position: fixed; inset: 62px 0 auto 0;
+        background: rgba(5,5,5,0.97);
+        flex-direction: column; gap: 0;
+        padding: 1rem 0 1.5rem;
+        border-bottom: var(--bordure);
+        display: none;
+      }
+      nav ul.open { display: flex; }
+      nav ul li { text-align: center; padding: 0.8rem 0; }
+      .burger { display: block; }
+      .nav .btn { display: none; }
+    }
+    @media (max-width: 520px) {
+      .events-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; }
+      .stat { border-right: none; border-bottom: var(--bordure); }
+      .stat:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Silhouette de sprinteur réutilisable -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <g id="sprinter" stroke="currentColor" fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="66" cy="15" r="9" fill="currentColor" stroke="none"/>
+        <path d="M61 26 L47 52"/>
+        <path d="M58 32 L76 24 L88 30"/>
+        <path d="M55 38 L40 44 L30 36"/>
+        <path d="M47 52 L60 62 L58 82"/>
+        <path d="M47 52 L30 66 L12 62"/>
+      </g>
+    </defs>
+  </svg>
+
+  <header>
+    <div class="container nav">
+      <a href="#" class="logo">
+        <span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span>
+        <span>Les Ambassadeurs Club</span>
+      </a>
+      <nav>
+        <ul id="menu">
+          <li><a href="#apropos">Le club</a></li>
+          <li><a href="#entrainements">Entraînements</a></li>
+          <li><a href="#evenements">Événements</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#rejoindre">Rejoindre</a></li>
+        </ul>
+      </nav>
+      <a class="btn" href="https://www.instagram.com/les_ambassadeurs_club/" target="_blank" rel="noopener">Instagram</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span>
+      <h1><span>Les</span><span>Ambassadeurs</span><span>Club</span></h1>
+      <div class="hero-eyebrow">Communauté running · Alger</div>
+      <p class="lead">
+        Plus qu'un club, une communauté. Sorties longues au lever du soleil,
+        séances fondamentales en semaine, trails et aventures — chaque foulée
+        se partage, du débutant au confirmé.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#rejoindre">Rejoindre le club</a>
+        <a class="btn" href="#entrainements">Les entraînements</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>7 800+</b><span>Abonnés</span></div>
+        <div class="stat"><b>2×</b><span>Séances / semaine</span></div>
+        <div class="stat"><b>15 km</b><span>Sorties longues</span></div>
+        <div class="stat"><b>50</b><span>Places / sortie</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BANDEAU ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Les Ambassadeurs Club</span>★<span>Communauté Running</span>★<span>Alger</span>★
+      <span>Les Ambassadeurs Club</span>★<span>Communauté Running</span>★<span>Alger</span>★
+      <span>Les Ambassadeurs Club</span>★<span>Communauté Running</span>★<span>Alger</span>★
+      <span>Les Ambassadeurs Club</span>★<span>Communauté Running</span>★<span>Alger</span>★
+    </div>
+  </div>
+
+  <!-- ============ À PROPOS ============ -->
+  <section class="apropos" id="apropos">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Le club</span>
+        <h2>Une communauté avant tout</h2>
+      </div>
+      <div class="apropos-grid">
+        <div class="apropos-visual reveal">
+          <span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span>
+          <span class="tag">Alger · DZ</span>
+        </div>
+        <div class="apropos-text reveal">
+          <h3>Notre esprit</h3>
+          <p>
+            Les Ambassadeurs Club rassemble les passionnés de course à pied
+            d'Alger autour d'une idée simple : progresser ensemble, dans la
+            bonne humeur. Les séances sont ouvertes à tout le monde.
+          </p>
+          <h3>Pour tous les niveaux</h3>
+          <p>
+            Débutant qui découvre le running ou intermédiaire confirmé qui
+            prépare une course : chaque séance propose des groupes et des
+            distances adaptés à votre niveau.
+          </p>
+          <h3>Bien plus que du running</h3>
+          <p>
+            Sorties découverte dans la Casbah, trails en pleine nature, défis
+            Iron Run, petits-déjeuners d'après-course… la course à pied est
+            notre prétexte préféré pour partager de bons moments.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENTRAÎNEMENTS ============ -->
+  <section id="entrainements">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Chaque semaine</span>
+        <h2>Nos entraînements</h2>
+        <p>Deux rendez-vous fixes par semaine, encadrés et adaptés à chaque niveau. Les lieux et horaires exacts sont confirmés sur Instagram avant chaque séance.</p>
+      </div>
+      <div class="seances-grid">
+        <article class="seance reveal">
+          <span class="jour">Mardi soir</span>
+          <h3>Séance fondamentale</h3>
+          <ul>
+            <li><span class="lbl">Programme</span> Footing fondamental de 40 minutes, allure conversationnelle</li>
+            <li><span class="lbl">Lieu</span> Stade du 5 Juillet — regroupement à la cafétéria du stade annexe</li>
+            <li><span class="lbl">Horaires</span> Regroupement 18h15 · Départ 18h45</li>
+            <li><span class="lbl">Objectif</span> Construire l'endurance de base</li>
+          </ul>
+        </article>
+        <article class="seance reveal">
+          <span class="jour">Vendredi matin</span>
+          <h3>Sortie longue</h3>
+          <ul>
+            <li><span class="lbl">Programme</span> 15 km pour les intermédiaires confirmés · 10 km pour les intermédiaires</li>
+            <li><span class="lbl">Lieu</span> Parc zoologique de Ben Aknoun — regroupement au Village Africain</li>
+            <li><span class="lbl">Horaires</span> Regroupement 6h30 · Départ 6h45</li>
+            <li><span class="lbl">Objectif</span> Le grand rendez-vous du week-end, au lever du soleil</li>
+          </ul>
+        </article>
+      </div>
+      <p class="note-rules reveal">
+        <b>Bon à savoir :</b> les séances sont <b>ouvertes à tout le monde</b>,
+        dans la limite de <b>50 personnes</b> par sortie. Une seule règle d'or : <b>pas de retard</b> —
+        le départ est donné à l'heure !
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ÉVÉNEMENTS ============ -->
+  <section class="events" id="evenements">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">Aventures</span>
+        <h2>Nos événements signature</h2>
+        <p>Au-delà des entraînements hebdomadaires, le club organise régulièrement des expériences uniques à Alger et au-delà.</p>
+      </div>
+      <div class="events-grid">
+        <article class="event reveal">
+          <span class="num">01</span>
+          <h3>Sortie Casbah</h3>
+          <p>Courir dans les ruelles historiques de la Casbah d'Alger, entre patrimoine et dénivelé.</p>
+        </article>
+        <article class="event reveal">
+          <span class="num">02</span>
+          <h3>Urban Trail</h3>
+          <p>Le trail urbain du club : escaliers, montées et panoramas sur la baie d'Alger.</p>
+        </article>
+        <article class="event reveal">
+          <span class="num">03</span>
+          <h3>Safari Trail</h3>
+          <p>Évasion nature sur les sentiers, pour goûter au trail loin du bitume.</p>
+        </article>
+        <article class="event reveal">
+          <span class="num">04</span>
+          <h3>Iron Run</h3>
+          <p>Le défi qui combine course et renforcement — pour se dépasser ensemble.</p>
+        </article>
+        <article class="event reveal">
+          <span class="num">05</span>
+          <h3>Alger Run</h3>
+          <p>Les grandes sorties emblématiques à travers les plus beaux spots de la capitale.</p>
+        </article>
+        <article class="event reveal">
+          <span class="num">06</span>
+          <h3>Moments conviviaux</h3>
+          <p>Petits-déjeuners, sorties détente et rencontres : l'esprit du club après l'effort.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALERIE ============ -->
+  <section id="galerie">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="kicker">En images</span>
+        <h2>La vie du club</h2>
+      </div>
+      <div class="galerie-grid">
+        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Sortie longue</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Ben Aknoun</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Courses</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">La famille</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Trail</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Casbah</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Iron Run</span></div>
+        <div class="galerie-item reveal"><span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span><span class="label">Convivialité</span></div>
+      </div>
+      <p class="galerie-note reveal">
+        Retrouvez toutes nos photos et vidéos sur
+        <a href="https://www.instagram.com/les_ambassadeurs_club/" target="_blank" rel="noopener">@les_ambassadeurs_club</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ REJOINDRE ============ -->
+  <section class="rejoindre" id="rejoindre">
+    <div class="container">
+      <div class="reveal">
+        <span class="kicker" style="display:inline-block;background:var(--blanc);color:var(--noir);letter-spacing:.24em;text-transform:uppercase;font-size:.75rem;font-weight:700;padding:.35rem .9rem;margin-bottom:1.1rem;">Prêt à courir ?</span>
+        <h2>Rejoignez la famille</h2>
+        <p>
+          Pas de niveau minimum requis. Il suffit d'une paire
+          de baskets et de l'envie de courir avec nous.
+        </p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <span class="num">01</span>
+          <h3>Suivez-nous sur Instagram</h3>
+          <p>Les prochaines séances, lieux et horaires y sont annoncés chaque semaine.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num">02</span>
+          <h3>Inscrivez-vous à une séance</h3>
+          <p>Le lien d'inscription est publié en bio — les places sont limitées à 50 coureurs.</p>
+        </div>
+        <div class="step reveal">
+          <span class="num">03</span>
+          <h3>Venez courir !</h3>
+          <p>Présentez-vous au point de regroupement à l'heure, on s'occupe du reste.</p>
+        </div>
+      </div>
+      <a class="btn btn-solid reveal" href="https://www.instagram.com/les_ambassadeurs_club/" target="_blank" rel="noopener">
+        Suivre @les_ambassadeurs_club
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="logo">
+        <span class="runner-icon"><svg viewBox="0 0 100 92"><use href="#sprinter"/></svg></span>
+        <span>Les Ambassadeurs Club</span>
+      </div>
+      <div class="socials">
+        <a href="https://www.instagram.com/les_ambassadeurs_club/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.2-.1 1.6-.1 4.8-.1zm0 2c-3.1 0-3.5 0-4.7.1-1.1.1-1.5.2-1.8.3-.4.2-.7.4-1 .7-.3.3-.5.6-.7 1-.1.3-.3.7-.3 1.8-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1.1.2 1.5.3 1.8.2.4.4.7.7 1 .3.3.6.5 1 .7.3.1.7.3 1.8.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1.1-.1 1.5-.2 1.8-.3.4-.2.7-.4 1-.7.3-.3.5-.6.7-1 .1-.3.3-.7.3-1.8.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1.1-.2-1.5-.3-1.8-.2-.4-.4-.7-.7-1-.3-.3-.6-.5-1-.7-.3-.1-.7-.3-1.8-.3-1.2-.1-1.6-.1-4.7-.1zm0 3.4a5.4 5.4 0 1 1 0 10.8 5.4 5.4 0 0 1 0-10.8zm0 2a3.4 3.4 0 1 0 0 6.8 3.4 3.4 0 0 0 0-6.8zm5.6-2.3a1.3 1.3 0 1 1-2.6 0 1.3 1.3 0 0 1 2.6 0z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+      </div>
+      <p class="fine">© 2026 Les Ambassadeurs Club — Communauté running, Alger.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Menu mobile
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+    burger.addEventListener('click', () => menu.classList.toggle('open'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+    // Animations d'apparition au scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
